@@ -1,6 +1,6 @@
 # Setup
 
-Before proceeding, please consult the requirements page [here](../Requirements.md).
+Before proceeding, please consult the requirements page [here](Requirements.md).
 
 <!-- MarkdownTOC -->
 
