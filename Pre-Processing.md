@@ -52,7 +52,7 @@ fbarber flag extract \
     --filter-qual-output fastq_hq/$libid.lq.fastq.gz \
     --unmatched-output fastq_hq/$libid.unmatched.fastq.gz \
     --log-file fastq_hq/$libid.log \
-    --pattern 'umi8bc8cs6' --simple-pattern \ #this specifies the umi and barcode to be removed
+    --pattern 'umi8bc8cs6' --simple-pattern \ 
     --flagstats bc cs --filter-qual-flags umi,30,.2 \
     --threads $threads --chunk-size 200000
 ```
