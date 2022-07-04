@@ -107,6 +107,11 @@ gunzip -c reference/Homo_sapiens.GRCh38.dna.primary_assembly.HindIII_sites.bed.g
 git clone https://github.com/GG-space/gpseq-preprocessing-example.git
 cp -rv gpseq-preprocessing-example/scripts .
 rm -rf gpseq-preprocessing-example
+cd scripts
+rm umis2cutsite.py
+rm mk_summary_table.py
+git clone https://github.com/claireleblanc/umis2cutsite.py
+git clone https://github.com/claireleblanc/mk_summary_table.py
 chmod +x scripts/*
 ```
 
