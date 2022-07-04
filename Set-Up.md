@@ -30,6 +30,8 @@ fasterq-dump -h
 
 If the output is `command not found: fastq-dump`, install them (only for the current tutorial) by running:
 
+This did not work use: 
+```wget "https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR9974287/SRR9974287" -O fastq/TUTORIAL01_S1_LALL_R1_001.fastq.gz``` 
 ```
 mkdir -p $HOME/gpseq-tutorial/tools/sra-tools/
 cd $HOME/gpseq-tutorial/tools/sra-tools/
