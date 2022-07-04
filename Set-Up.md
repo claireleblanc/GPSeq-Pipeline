@@ -110,9 +110,12 @@ rm -rf gpseq-preprocessing-example
 cd scripts
 rm umis2cutsite.py
 rm mk_summary_table.py
-git clone https://github.com/claireleblanc/umis2cutsite.py
-git clone https://github.com/claireleblanc/mk_summary_table.py
-chmod +x scripts/*
+git clone https://github.com/claireleblanc/GPSeq-Pipeline.git #download the two updated scripts 
+cp -rv GPSeq-Pipeline/umis2cutsite.py . 
+cp -rv GPSeq-Pipeline/mk_summary_table.py . 
+rm -rf GPSeq-Pipeline
+cd .. 
+chmod +x scripts/* #make all scripts executable
 ```
 
 ## Parameters
