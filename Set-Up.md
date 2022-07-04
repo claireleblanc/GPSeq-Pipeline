@@ -62,6 +62,14 @@ zcat reference/Homo_sapiens.GRCh38.dna.primary_assembly.noChr.fa.gz | sed 's/>/>
 rm reference/Homo_sapiens.GRCh38.dna.primary_assembly.noChr.fa.gz
 ```
 
+If zcat does not work, use: 
+```bash
+mkdir reference
+curl http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz --output reference/Homo_sapiens.GRCh38.dna.primary_assembly.noChr.fa.gz
+gunzip -c reference/Homo_sapiens.GRCh38.dna.primary_assembly.noChr.fa.gz | sed 's/>/>chr/' | gzip > reference/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+rm reference/Homo_sapiens.GRCh38.dna.primary_assembly.noChr.fa.gz
+```
+
 Then, build the bowtie2 index with (*NOTE. The number of threads should be adapted to your machine.*):
 
 ```bash
@@ -82,6 +90,14 @@ fbarber find_seq reference/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz AAGCTT
 # Check the output file
 zcat reference/Homo_sapiens.GRCh38.dna.primary_assembly.HindIII_sites.bed.gz | less
 ```
+If zcat does not work: 
+```bash
+fbarber find_seq reference/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz AAGCTT --case-insensitive --global-name --output reference/Homo_sapiens.GRCh38.dna.primary_assembly.HindIII_sites.bed.gz --log-file reference/Homo_sapiens.GRCh38.dna.primary_assembly.HindIII_sites.log
+
+# Check the output file
+gunzip -c reference/Homo_sapiens.GRCh38.dna.primary_assembly.HindIII_sites.bed.gz | less
+```
+
 
 **NOTE**. If using Python 3.6 or 3.7, version 0.1.3 will be installed instead, which has a known issue with running `fbarber find_seq` with the `--case-insensitive` option. We recommend upgrading to Python3.8+ or skipping the `--case-insensitive` option (in the scope of this tutorial).
 
