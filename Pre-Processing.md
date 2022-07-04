@@ -52,7 +52,7 @@ fbarber flag extract \
     --filter-qual-output fastq_hq/$libid.lq.fastq.gz \
     --unmatched-output fastq_hq/$libid.unmatched.fastq.gz \
     --log-file fastq_hq/$libid.log \
-    --pattern 'umi8bc8cs6' --simple-pattern \ 
+    --pattern 'umi8bc8cs6' --simple-pattern \
     --flagstats bc cs --filter-qual-flags umi,30,.2 \
     --threads $threads --chunk-size 200000
 ```
@@ -72,7 +72,7 @@ fbarber flag regex \
     fastq_hq/$libid.hq.fastq.gz fastq_prefix/$libid.fastq.gz \
     --unmatched-output fastq_prefix/$libid.unmatched.fastq.gz \
     --log-file fastq_prefix/$libid.log \
-    --pattern "bc,^(?<bc>GCTTGTCA){s<2}$" "cs,^(?<cs>AAGCTT){s<2}$" \ #this part should be modified to match the specific barcode and cutsite sequencces
+    --pattern "bc,^(?<bc>GCTTGTCA){s<2}$" "cs,^(?<cs>AAGCTT){s<2}$" \
     --threads $threads --chunk-size 200000
 ```
 
