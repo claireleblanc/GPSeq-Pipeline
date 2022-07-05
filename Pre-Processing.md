@@ -127,6 +127,9 @@ rm -i mapping/$libid.sam
 
 Reads aligned to the reverse strand are shifted to the first nucleotide of the restriction site.
 
+- If read is on reverse strand, create file with chromosome, end position of alignment, UMI, and UMI quality
+- If read is on forward strand, create file with chromosome, start position of alignment, UMI, and UMI quality
+
 ```bash
 # Correct aligned position
 mkdir -p atcs
@@ -134,7 +137,7 @@ mkdir -p atcs
     mapping/$libid.clean.bam -o atcs/$libid.clean.revs.bam
 ../sambamba-0.6.8 view -q -t $threads atcs/$libid.clean.revs.bam | \
     convert2bed --input=sam --keep-header - > atcs/$libid.clean.revs.bed
-cut -f 1-4 atcs/$libid.clean.revs.bed | tr "~" $'\t' | cut -f 1,3,7,16 | gzip \ #for reads on the reverse strand, keep the end coordinate
+cut -f 1-4 atcs/$libid.clean.revs.bed | tr "~" $'\t' | cut -f 1,3,7,16 | gzip \
     > atcs/$libid.clean.revs.umi.txt.gz
 rm atcs/$libid.clean.revs.bam atcs/$libid.clean.revs.bed
 
@@ -142,7 +145,7 @@ rm atcs/$libid.clean.revs.bam atcs/$libid.clean.revs.bed
     mapping/$libid.clean.bam -o atcs/$libid.clean.plus.bam
 ../sambamba-0.6.8 view -q -t $threads atcs/$libid.clean.plus.bam | \
     convert2bed --input=sam --keep-header - > atcs/$libid.clean.plus.bed
-cut -f 1-4 atcs/$libid.clean.plus.bed | tr "~" $'\t' | cut -f 1,2,7,16 | gzip \ #for reads on the forward strand, keep the start coordinate
+cut -f 1-4 atcs/$libid.clean.plus.bed | tr "~" $'\t' | cut -f 1,2,7,16 | gzip \
     > atcs/$libid.clean.plus.umi.txt.gz
 rm atcs/$libid.clean.plus.bam atcs/$libid.clean.plus.bed
 ```
