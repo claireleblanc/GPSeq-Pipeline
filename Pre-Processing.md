@@ -109,16 +109,16 @@ We then use sambamba to convert the SAM file to a BAM file and apply the followi
 sambamba view -q -S mapping/$libid.sam -f bam -t $threads > mapping/$libid.bam #view SAM file as bam file and redirect output to a bam file
 
 rm -i mapping/$libid.sam
-sambamba view -q mapping/$libid.bam -f bam \ 
+../sambamba-0.6.8 view -q mapping/$libid.bam -f bam \ 
     -F "mapping_quality<30" -c -t $threads \
     > mapping/$libid.lq_count.txt
-sambamba view -q mapping/$libid.bam -f bam \
+../sambamba-0.6.8 view -q mapping/$libid.bam -f bam \
     -F "ref_name=='chrM'" -c -t $threads \
     > mapping/$libid.chrM.txt
-sambamba view -q mapping/$libid.bam -f bam -t $threads \
+../sambamba-0.6.8 view -q mapping/$libid.bam -f bam -t $threads \
     -F "mapping_quality>=30 and not secondary_alignment and not unmapped and not chimeric and ref_name!='chrM'" \
     > mapping/$libid.clean.bam
-sambamba view -q mapping/$libid.clean.bam -f bam -c -t $threads > mapping/$libid.clean_count.txt
+../sambamba-0.6.8 view -q mapping/$libid.clean.bam -f bam -c -t $threads > mapping/$libid.clean_count.txt
 ```
 
 
@@ -130,17 +130,17 @@ Reads aligned to the reverse strand are shifted to the first nucleotide of the r
 ```bash
 # Correct aligned position
 mkdir -p atcs
-sambamba view -q -t $threads -h -f bam -F "reverse_strand" \
+../sambamba-0.6.8 view -q -t $threads -h -f bam -F "reverse_strand" \
     mapping/$libid.clean.bam -o atcs/$libid.clean.revs.bam
-sambamba view -q -t $threads atcs/$libid.clean.revs.bam | \
+../sambamba-0.6.8 view -q -t $threads atcs/$libid.clean.revs.bam | \
     convert2bed --input=sam --keep-header - > atcs/$libid.clean.revs.bed
 cut -f 1-4 atcs/$libid.clean.revs.bed | tr "~" $'\t' | cut -f 1,3,7,16 | gzip \ #for reads on the reverse strand, keep the end coordinate
     > atcs/$libid.clean.revs.umi.txt.gz
 rm atcs/$libid.clean.revs.bam atcs/$libid.clean.revs.bed
 
-sambamba view -q -t $threads -h -f bam -F "not reverse_strand" \
+../sambamba-0.6.8 view -q -t $threads -h -f bam -F "not reverse_strand" \
     mapping/$libid.clean.bam -o atcs/$libid.clean.plus.bam
-sambamba view -q -t $threads atcs/$libid.clean.plus.bam | \
+../sambamba-0.6.8 view -q -t $threads atcs/$libid.clean.plus.bam | \
     convert2bed --input=sam --keep-header - > atcs/$libid.clean.plus.bed
 cut -f 1-4 atcs/$libid.clean.plus.bed | tr "~" $'\t' | cut -f 1,2,7,16 | gzip \ #for reads on the forward strand, keep the start coordinate
     > atcs/$libid.clean.plus.umi.txt.gz
