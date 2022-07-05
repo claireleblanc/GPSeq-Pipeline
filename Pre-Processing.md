@@ -153,7 +153,6 @@ rm atcs/$libid.clean.plus.bam atcs/$libid.clean.plus.bed
 
 ## 8. Group reads
 
-
 Reads mapped to the same location are grouped together.
 
 ```bash
@@ -168,6 +167,8 @@ rm atcs/$libid.clean.plus.umi.txt.gz atcs/$libid.clean.revs.umi.txt.gz
 
 ## 9. Assign read groups to sites
 
+Read groups are assigned to the closest restriction site.
+
 ```bash
 # Assign UMIs to cutsites
 scripts/umis2cutsite.py \
@@ -176,9 +177,10 @@ scripts/umis2cutsite.py \
 rm atcs/$libid.clean.umis.txt.gz
 ```
 
-Read groups are assigned to the closest restriction site.
 
 ## 10. De-duplicate
+
+Reads assigned to the same restriction site are de-duplicated based on their UMI sequences.
 
 ```bash
 # Deduplicate
@@ -189,9 +191,10 @@ scripts/umi_dedupl.R \
     -c $threads -r 10000
 ```
 
-Reads assigned to the same restriction site are de-duplicated based on their UMI sequences.
 
 ## 11. Generate final BED file
+
+A BED file is generated with the location and de-duplicated read count for each restriction site.
 
 ```bash
 # Generate final bed
@@ -200,8 +203,6 @@ zcat dedup/$libid.clean.umis_dedupd.txt.gz | \
     awk 'BEGIN{FS=OFS="\t"}{print $1 FS $2 FS $2 FS "pos_"NR FS $4}' | \
     gzip > bed/$libid.bed.gz
 ```
-
-A BED file is generated with the location and de-duplicated read count for each restriction site.
 
 ## 12. Summary table
 
