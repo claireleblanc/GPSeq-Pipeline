@@ -41,19 +41,21 @@ If build fails with the error `Connection reset by peer` or `error: retrieving g
 
 ## Preparing the files to run the pipeline
 
-Make reference folder: 
-- `cd GPSeq-Pipeline/docker/GPSeq_processing-main/`
-- mkdir -p reference
-cd reference
-wget https://hgdownload.cse.ucsc.edu/goldenpath/hg19/bigZips/hg19.chrom.sizes
-cp /media/bs2-pro/GG-BACKUP/projects/gpseq-human-neuronal-differentiation/data/centrality-radical/2018-07-09.GG.manual_mask.centro_telo.for_centrality_tracks.tsv .
--> maybe just have these included in the repository 
--> one for hg19 and one for mm10
--> also include masks
+Reference files and mask files for hg19 and mm10 genomes are provided. Custom files can also be used and should be similarly uploaded to the reference folder. 
 
-cd ..
-nano BICRO323.config 
-For each line have sampleID (libraryID) tab barcode
+Create the config file. It should have two tab-separated columns, the first for the sequencing libraryID and the next for the barcode corresponding to that ID. There should be a row for each condition (timepoint): 
+|  |  |
+| ----------- | ----------- |
+| cond1 | barcode |
+| cond2 | barcode |
+| cond3 | barcode |
+
+The example file **example.config** can be used as a template to create this file. 
+
+Create the tsv file. It should have 
+| experiment ID | condition (time point) | libraryID | file path | 
+| ----------- | ----------- | ----------- | ----------- |
+
 
 when changing run file and setting path to input: in the local input, need fastq folder with all fastq files
 
