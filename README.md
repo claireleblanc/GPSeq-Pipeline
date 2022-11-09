@@ -4,7 +4,7 @@
 
 There are multiple ways to run the GPSeq pipeline. Specifically, you can either use a docker container (which contains all the necessary packages), or run the commands mannually (which requires installation of all the correct packages. 
 
-Docker instructions:
+[Docker instructions](./docker/)
 
 Mannnual instructions: 
 
