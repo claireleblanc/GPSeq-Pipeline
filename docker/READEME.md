@@ -20,27 +20,30 @@ You can check that a user has been added by running
 
 ## Building the docker image
 
-The next step is to build the docker image. First, pull the repository: `git pull
+The next step is to build the docker image. First, pull the repository: `git clone https://github.com/claireleblanc/GPSeq-Pipeline.git`
+
+Go into the correct folder: `cd GPSeq-Pipeline/docker/GPSeq_processing-main/docker`
+
+Build the docker image: `docker build -t $image -f ./Dockerfile .` This is expected to take around 15 minutes, but may varry depending on your machine. 
+
+To check whether build was sucessful, run: `docker image ls`
+
+If buiild was sucessfull, this should show three new entries: 
+
+| REPOSITORY | TAG | IMAGE ID | CREATED | SIZE |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| bicrolab/gpseq | 1.0 | 537f5c282500 | 3 minutes ago | 2.97GB |
+| bicrolab/gpseq | latest | 537f5c282500 | 3 minutes ago | 2.97GB |
+| gpseq | latest | 537f5c28250 | 3 minutes ago | 2.97GB |
+
+If build fails with the error `Connection reset by peer` or `error: retrieving gpg key timed out,` it could be that your machine is running too many processes at once. Try running it again later, when less things are running the machine. You can also try running each command in thee build.sh file individually to see which command is causing issues. 
 
 
-
-To list docker images: docker image ls
-
-Building the docker image (docker build -t $image -f ./Dockerfile .) took roughly 15 minutes. 
-
-If build fails with error "Connection reset by peer" or "error: retrieving gpg key timed out," it could be that your machine is running too many processes at once. Try running it again after some time. 
-- can also try running each command in thee build.sh file individually to see which command is causing issues. 
-
-If buiild was sucessfull, docker image ls should show three new entries: 
-
-REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
-bicrolab/gpseq   1.0       537f5c282500   3 minutes ago   2.97GB
-bicrolab/gpseq   latest    537f5c282500   3 minutes ago   2.97GB
-gpseq            latest    537f5c282500   3 minutes ago   2.97GB
+## Preparing the files to run the pipeline
 
 Make reference folder: 
-cd $HOME/GPSeq_processing
-mkdir -p reference
+- `cd GPSeq-Pipeline/docker/GPSeq_processing-main/`
+- mkdir -p reference
 cd reference
 wget https://hgdownload.cse.ucsc.edu/goldenpath/hg19/bigZips/hg19.chrom.sizes
 cp /media/bs2-pro/GG-BACKUP/projects/gpseq-human-neuronal-differentiation/data/centrality-radical/2018-07-09.GG.manual_mask.centro_telo.for_centrality_tracks.tsv .
