@@ -1,0 +1,7 @@
+exid	cond	libid	fpath
+B321	30s	KG121	/home/WK321/bed/KG121.bed.gz
+B321	1min	KG122	/home/WK321/bed/KG122.bed.gz
+B321	2min	KG123	/home/WK321/bed/KG123.bed.gz
+B321	5min	KG124	/home/WK321/bed/KG124.bed.gz
+B321	10min	KG125	/home/WK321/bed/KG125.bed.gz
+B321	30min	KG126	/home/WK321/bed/KG126.bed.gz
