@@ -20,7 +20,7 @@ You can check that a user has been added by running
 
 ## Building the docker image
 
-The next step is to build the docker image. First, enter the 
+The next step is to build the docker image. First, pull the repository: `git pull
 
 
 
