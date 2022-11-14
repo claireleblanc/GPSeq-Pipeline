@@ -60,3 +60,14 @@ Create the tsv file. It should have
 when changing run file and setting path to input: in the local input, need fastq folder with all fastq files
 
 change enzyme
+
+## If container finished with error:
+
+run `docker ps` to see id of container you created
+
+You will see something like: 
+| CONTAINER ID |  IMAGE    |      COMMAND   |    CREATED   |   STATUS  |    PORTS  |   NAMES |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| 2e1601de5977  | gpseq:latest |  "/bin/bash" |   5 days ago  | Up 5 days   |          gpseq_container |
+
+stop the conntainer with `docker stop containerID` ex. `docker stop 2e1601de5977`
