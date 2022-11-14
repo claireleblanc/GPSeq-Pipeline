@@ -43,23 +43,29 @@ If build fails with the error `Connection reset by peer` or `error: retrieving g
 
 Reference files and mask files for hg19 and mm10 genomes are provided. Custom files can also be used and should be similarly uploaded to the reference folder. 
 
-Create the config file. It should have two tab-separated columns, the first for the sequencing libraryID and the next for the barcode corresponding to that ID. There should be a row for each condition (timepoint): 
+Create the config file. It should be named `RunID.config` (replacing RunID with a unique identifier for this experiment. The file should contain two tab-separated columns, the first for the sequencing libraryID and the next for the barcode corresponding to that ID. There should be a row for each condition (timepoint): 
 |  |  |
 | ----------- | ----------- |
-| cond1 | barcode |
-| cond2 | barcode |
-| cond3 | barcode |
+| cond1 library id | barcode |
+| cond2 library id | barcode |
+| cond3 library id | barcode |
 
 The example file **example.config** can be used as a template to create this file. 
 
-Create the tsv file. It should have 
+Create the config_centrality file. It should have 
 | experiment ID | condition (time point) | libraryID | file path | 
 | ----------- | ----------- | ----------- | ----------- |
 
+The example file **example.tsv** can be used as a template to create this file.
 
-when changing run file and setting path to input: in the local input, need fastq folder with all fastq files
+## Update the run file
 
-change enzyme
+Using the **run_example.sh** file as a template, updated the lines indicated with comments. Specifically, update:
+- The run_id, which should match the run id used when naming the config file
+- The path to the input fastq files. The path provided should be the path to a folder containing a `fastq` folder which contains the files of interest. Inside this `fastq` folder, the fastq files must be named as `libraryID.fastq`
+- The name of the config_centrality file
+- The name of the restriction enzyme used in the GPSeq experiment
+- Optional: The parameters of the GPSeq score calculation script. 
 
 ## If container finished with error:
 
