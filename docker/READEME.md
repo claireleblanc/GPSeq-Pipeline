@@ -68,6 +68,6 @@ run `docker ps` to see id of container you created
 You will see something like: 
 | CONTAINER ID |  IMAGE    |      COMMAND   |    CREATED   |   STATUS  |    PORTS  |   NAMES |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| 2e1601de5977  | gpseq:latest |  "/bin/bash" |   5 days ago  | Up 5 days   |          gpseq_container |
+| 2e1601de5977  | gpseq:latest |  "/bin/bash" |   5 days ago  | Up 5 days   |   |       gpseq_container |
 
 stop the conntainer with `docker stop containerID` ex. `docker stop 2e1601de5977`
