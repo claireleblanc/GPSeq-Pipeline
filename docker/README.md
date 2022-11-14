@@ -1,7 +1,5 @@
 # Docker
 
-## Overview
-
 ## Installation
 
 Instructions on how install docker [here](https://docs.docker.com/engine/install/ubuntu/)
