@@ -60,12 +60,23 @@ The example file **example.tsv** can be used as a template to create this file.
 
 ## Update the run file
 
-Using the **run_example.sh** file as a template, updated the lines indicated with comments. Specifically, update:
+Create a copy of the **run_example_human.sh** file with `cp run_example_human.sh run_RunID.sh` where runID is the unique identifier for this experiment. 
+
+Open this new file in a text editor (such as nano) and update the lines with comments. Specifically, update:
 - The run_id, which should match the run id used when naming the config file
 - The path to the input fastq files. The path provided should be the path to a folder containing a `fastq` folder which contains the files of interest. Inside this `fastq` folder, the fastq files must be named as `libraryID.fastq`
 - The name of the config_centrality file
 - The name of the restriction enzyme used in the GPSeq experiment
 - Optional: The parameters of the GPSeq score calculation script. 
+
+## Run the pipeline
+
+Depending on the input size, this could take days to run. We recommmend running in the background (we recommend tmux)
+
+Go into the correct folder:
+`cd /home/GPSeq-Pipeline/`
+
+Run the script: `bash run_RunID.sh` wherer runID is the unique identifier for this experiment.
 
 ## If container finished with error:
 
