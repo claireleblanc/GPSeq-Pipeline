@@ -50,8 +50,9 @@ Create the config file. It should be named `RunID.config` (replacing RunID with 
 
 The example file **example.config** can be used as a template to create this file. 
 
-Create the config_centrality file. It should have 
-| experiment ID | condition (time point) | libraryID | file path | 
+Create the config_centrality file. It should have a line with the following header, followed by a line for each condition:
+
+| exid  |  cond  |  libid  | fpath |
 | ----------- | ----------- | ----------- | ----------- |
 
 The example file **example.tsv** can be used as a template to create this file.
