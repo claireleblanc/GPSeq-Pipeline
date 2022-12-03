@@ -41,7 +41,9 @@ If build fails with the error `Connection reset by peer` or `error: retrieving g
 
 Reference files and mask files for hg19 and mm10 genomes are provided. Custom files can also be used and should be similarly uploaded to the reference folder. 
 
-Create the config file. It should be named `RunID.config` (replacing RunID with a unique identifier for this experiment. The file should contain two tab-separated columns, the first for the sequencing libraryID and the next for the barcode corresponding to that ID. There should be a row for each condition (timepoint): 
+Create the config file in `~/GPSeq-Pipeline/docker/GPSeq_processing-main`
+
+It should be named `RunID.config` (replacing RunID with a unique identifier for this experiment. The file should contain two tab-separated columns, the first for the sequencing libraryID and the next for the barcode corresponding to that ID. There should be a row for each condition (timepoint): 
 |  |  |
 | ----------- | ----------- |
 | cond1 library id | barcode |
