@@ -22,7 +22,7 @@ The next step is to build the docker image. First, pull the repository: `git clo
 
 Go into the correct folder: `cd GPSeq-Pipeline/docker/GPSeq_processing-main/docker`
 
-Build the docker image: `docker build -t $image -f ./Dockerfile .` This is expected to take around 15 minutes, but may varry depending on your machine. 
+Build the docker image: `bash build.sh` This is expected to take around 15 minutes, but may varry depending on your machine. 
 
 To check whether build was sucessful, run: `docker image ls`
 
