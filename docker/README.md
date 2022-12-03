@@ -59,6 +59,8 @@ Create the config_centrality tsv file. It should have a line with the following 
 
 The example file **example.tsv** can be used as a template to create this file.
 
+fpath should be /home/EXID/bed/LIBID.bed.gz
+
 ## Update the run file
 
 Create a copy of the **run_example_human.sh** file with `cp run_example_human.sh run_RunID.sh` where runID is the unique identifier for this experiment. 
