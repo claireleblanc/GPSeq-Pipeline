@@ -52,7 +52,7 @@ It should be named `RunID.config` (replacing RunID with a unique identifier for 
 
 The example file **example.config** can be used as a template to create this file. 
 
-Create the config_centrality file. It should have a line with the following header, followed by a line for each condition:
+Create the config_centrality tsv file. It should have a line with the following header (where each entry is separated by a tab), followed by a line for each condition:
 
 | exid  |  cond  |  libid  | fpath |
 | ----------- | ----------- | ----------- | ----------- |
