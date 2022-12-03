@@ -31,7 +31,7 @@ projXXX	5min	SW6	/home/projXXX/bed/SW6.bed.gz
 1. copy a tempalte run_projXXX.sh
 2. change the proj ID.
 3. provide the correct path to the projXXX folder.
-4. procide the correct path to the reference folder.
+4. provide the correct path to the reference folder.
 5. make sure the names of config files are in correct format. 
 
 
