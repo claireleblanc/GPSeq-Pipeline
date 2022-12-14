@@ -77,7 +77,7 @@ Open this new file in a text editor (such as nano) and update the lines with com
 Depending on the input size, this could take days to run. We recommmend running in the background (we recommend tmux)
 
 Go into the correct folder:
-`cd /home/GPSeq-Pipeline/docker/GPSeq_processing-main/`
+`cd /home/GPSeq-Pipeline/GPSeq_processing-docker/`
 
 Run the script: `bash run_RunID.sh` wherer runID is the unique identifier for this experiment.
 
