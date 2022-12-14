@@ -20,7 +20,7 @@ You can check that a user has been added by running
 
 The next step is to build the docker image. First, pull the repository: `git clone https://github.com/claireleblanc/GPSeq-Pipeline.git`
 
-Go into the correct folder: `cd GPSeq-Pipeline/docker/GPSeq_processing-main/docker`
+Go into the correct folder: `cd GPSeq-Pipeline/GPSeq_processing-docker/docker`
 
 Build the docker image: `bash build.sh` This is expected to take around 15 minutes, but may varry depending on your machine. 
 
