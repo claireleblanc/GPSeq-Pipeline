@@ -1,0 +1,6 @@
+fastx-barber
+joblib
+numpy
+pandas
+rich
+tqdm
