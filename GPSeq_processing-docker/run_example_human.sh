@@ -1,10 +1,10 @@
 #!/bin/bash
 
-run_id="WK321"
+run_id="B323" #update this
 
-localinput="/mnt/Storage2/${run_id}/"
-localref="/home/wenjing/GPSeq_processing/ref/"
-config_centraligy="./B321_centrality_GPSeq_meta.tsv"
+localinput="/media/bs2-seq/BICRO323" #update this
+localref="./reference"
+config_centraligy="./B323_centrality_GPSeq_meta.tsv" #update this
 
 
 docker run -it --rm -d --name gpseq_container -v $localinput:/home/${run_id} -v $localref:/home/ref gpseq:latest 
@@ -37,7 +37,7 @@ mask_path="/home/ref/2018-07-09.GG.manual_mask.centro_telo.for_centrality_tracks
 ref_genome="Homo_sapiens.GRCh37"
 version="75"
 ref_dir="/home/ref"
-cut_enzyme="MboI"
+cut_enzyme="MboI" #update this
 cutsite_path="${ref_dir}/${ref_genome}.${version}.dna.primary_assembly.${cut_enzyme}_sites.bed.gz"
 
 docker exec gpseq_container rm -r ${outpath}

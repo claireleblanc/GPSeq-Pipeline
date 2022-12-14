@@ -1,10 +1,10 @@
 #!/bin/bash
 
-run_id="WK299"
-
-localinput="/mnt/Storage2/${run_id}/"
-localref="/home/wenjing/GPSeq_processing/ref/"
-config_centraligy="./B299_centrality_GPSeq_meta.tsv"
+run_id="WK299" #update this
+ 
+localinput="/mnt/Storage2/${run_id}/" #update this
+localref="./reference"
+config_centraligy="./B299_centrality_GPSeq_meta.tsv" #update this
 
 
 docker run -it --rm -d --name gpseq_container_${run_id} -v $localinput:/home/${run_id} -v $localref:/home/ref gpseq:latest 
@@ -39,7 +39,7 @@ mask_path="/home/ref/mm10_low_mappability.UMAP_S50.bins_1e+06_1e+05.tsv"
 
 ref_genome="Mus_musculus.GRCm38"
 ref_dir="/home/ref"
-cut_enzyme="MboI"
+cut_enzyme="MboI" #update this
 cutsite_path="${ref_dir}/${ref_genome}.95.dna.primary_assembly.${cut_enzyme}_sites.bed.gz"
 
 docker exec gpseq_container_${run_id} rm -r ${outpath}
