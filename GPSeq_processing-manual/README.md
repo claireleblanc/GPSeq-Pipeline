@@ -2,4 +2,6 @@ The follow tutorials provide instructions on how to complete the GPSeq analysis 
 
 First, make sure you have the appropriate packages installed: [requirements](./Requirements.md)
 
-Then, do the set up instructions here: [set up](./Set-Up.md)
+Then, do the set up instructions: [here](./Set-Up.md)
+
+Then, do the pre-processing steps: [here](./PreProcessing.md)
