@@ -1,4 +1,4 @@
-# Running GPSeq Analysis Manually 
+# Running the GPSeq Analysis Manually 
 
 The follow tutorials provide instructions on how to complete the GPSeq analysis without using docker. These commands work on Ubuntu linux, other operating systems may require slightly different commands.
 
