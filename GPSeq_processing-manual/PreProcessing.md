@@ -23,6 +23,8 @@ Regarding the setup instructions, up to step 4, only the input fastq file and th
 
 ## 1. QC
 
+Quality control of the fastq files is run using the FastQC tool. A description of each individual plot and their interpretation can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/).
+
 ```bash
 cd $HOME/gpseq-tutorial
 # FASTQ quality control
@@ -30,9 +32,9 @@ mkdir -p fastqc
 fastqc $input -o fastqc --nogroup
 ```
 
-Quality control of the fastq files is run using the FastQC tool. A description of each individual plot and their interpretation can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/).
-
 ## 2. Extract flags and their frequency
+
+Then, we use `fastx-barber` to extract certain flags present in the prefix. In this case, we use a `--simple-pattern` where we specify that the Unique Molecular Identifier (UMI) is 8 nt, the barcode is 8 nt, and the cutsite is 6 nt. The frequency of each value for the barcode and cutsite flags is also calculated, and reads are filtered out for UMI of sufficient read quality. This step also removes the prefix from the reads, allowing them to be directly mapped to a reference genome.
 
 ```bash
 # Extract flags and filter by UMI quality
@@ -47,13 +49,13 @@ fbarber flag extract \
     --threads $threads --chunk-size 200000
 ```
 
-Then, we use `fastx-barber` to extract certain flags present in the prefix. In this case, we use a `--simple-pattern` where we specify that the Unique Molecular Identifier (UMI) is 8 nt, the barcode is 8 nt, and the cutsite is 6 nt. The frequency of each value for the barcode and cutsite flags is also calculated, and reads are filtered out for UMI of sufficient read quality. This step also removes the prefix from the reads, allowing them to be directly mapped to a reference genome.
-
 ## 3. Manual check
 
 This step will soon be performed by a script. Currently, the frequency of the cutsite and barcode values is checked to see that the expected barcode and cutsite sequences are the most frequent (`GCTTGTCA` and `AAGCTT`, respectively).
 
 ## 4. Filter by prefix
+
+Then, we use again `fastx-barber` to select only reads with the expected sequence for the barcode and cutsite flag (this can be adjusted based on the manual check). Moreover, we allow for up to two mismatches to the expected sequences (with `{s<2}`).
 
 ```bash
 # Filter by prefix
@@ -66,9 +68,9 @@ fbarber flag regex \
     --threads $threads --chunk-size 200000
 ```
 
-Then, we use again `fastx-barber` to select only reads with the expected sequence for the barcode and cutsite flag (this can be adjusted based on the manual check). Moreover, we allow for up to two mismatches to the expected sequences (with `{s<2}`).
-
 ## 5. Map
+
+We then align the reads to the reference genome, generating a SAM file.
 
 ```bash
 # Align
@@ -79,9 +81,15 @@ bowtie2 \
     -S mapping/$libid.sam &> mapping/$libid.mapping.log
 ```
 
-We then align the reads to the reference genome, generating a SAM file.
-
 ## 6. Filter mapping
+
+We then use sambamba to convert the SAM file to a BAM file and apply the following filters to the reads:
+
+* Mapping quality should be 30 or higher.
+* Any reads mapped to the mitochondrial genome are discarded.
+* Secondary alignments and unmapped reads are discarded.
+* If the sequencing is pair-ended, chimeric reads (with the two ends on different chromosomes).
+
 
 ```bash
 # Filter alignment
@@ -100,14 +108,9 @@ sambamba view -q mapping/$libid.bam -f bam -t $threads \
 sambamba view -q mapping/$libid.clean.bam -f bam -c -t $threads > mapping/$libid.clean_count.txt
 ```
 
-We then use sambamba to convert the SAM file to a BAM file and apply the following filters to the reads:
-
-* Mapping quality should be 30 or higher.
-* Any reads mapped to the mitochondrial genome are discarded.
-* Secondary alignments and unmapped reads are discarded.
-* If the sequencing is pair-ended, chimeric reads (with the two ends on different chromosomes).
-
 ## 7. Correct mapping
+
+Reads aligned to the reverse strand are shifted to the first nucleotide of the restriction site.
 
 ```bash
 # Correct aligned position
@@ -129,9 +132,9 @@ cut -f 1-4 atcs/$libid.clean.plus.bed | tr "~" $'\t' | cut -f 1,2,7,16 | gzip \
 rm atcs/$libid.clean.plus.bam atcs/$libid.clean.plus.bed
 ```
 
-Reads aligned to the reverse strand are shifted to the first nucleotide of the restriction site.
-
 ## 8. Group reads
+
+Reads mapped to the same location are grouped together.
 
 ```bash
 # Group UMIs
@@ -143,9 +146,9 @@ scripts/group_umis.py \
 rm atcs/$libid.clean.plus.umi.txt.gz atcs/$libid.clean.revs.umi.txt.gz
 ```
 
-Reads mapped to the same location are grouped together.
-
 ## 9. Assign read groups to sites
+
+Read groups are assigned to the closest restriction site.
 
 ```bash
 # Assign UMIs to cutsites
@@ -155,9 +158,10 @@ scripts/umis2cutsite.py \
 rm atcs/$libid.clean.umis.txt.gz
 ```
 
-Read groups are assigned to the closest restriction site.
 
 ## 10. De-duplicate
+
+Reads assigned to the same restriction site are de-duplicated based on their UMI sequences.
 
 ```bash
 # Deduplicate
@@ -168,9 +172,10 @@ scripts/umi_dedupl.R \
     -c $threads -r 10000
 ```
 
-Reads assigned to the same restriction site are de-duplicated based on their UMI sequences.
 
 ## 11. Generate final BED file
+
+A BED file is generated with the location and de-duplicated read count for each restriction site.
 
 ```bash
 # Generate final bed
@@ -179,8 +184,6 @@ zcat dedup/$libid.clean.umis_dedupd.txt.gz | \
     awk 'BEGIN{FS=OFS="\t"}{print $1 FS $2 FS $2 FS "pos_"NR FS $4}' | \
     gzip > bed/$libid.bed.gz
 ```
-
-A BED file is generated with the location and de-duplicated read count for each restriction site.
 
 ## 12. Summary table
 
