@@ -117,4 +117,4 @@ Five parameters are required to run the pipeline:
 
 ## Tutorial
 
-Now you can proceed with the [tutorial](../PreProcessing.md).
+Now you can proceed with the Pre-Processing [tutorial](./Pre-Processing.md).
