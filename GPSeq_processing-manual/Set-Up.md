@@ -1,6 +1,6 @@
 # Setup
 
-Before proceeding, please consult the requirements page [here](../pages/requirements.md).
+Before proceeding, please consult the requirements page [here](../Requirements.md).
 
 <!-- MarkdownTOC -->
 
@@ -117,4 +117,4 @@ Five parameters are required to run the pipeline:
 
 ## Tutorial
 
-Now you can proceed with the [tutorial](../pages/tutorial.md).
+Now you can proceed with the [tutorial](../PreProcessing.md).
