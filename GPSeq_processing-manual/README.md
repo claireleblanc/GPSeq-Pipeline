@@ -5,3 +5,5 @@ First, make sure you have the appropriate packages installed: [requirements](./R
 Then, do the set up instructions: [here](./Set-Up.md)
 
 Then, do the pre-processing steps: [here](./PreProcessing.md)
+
+Finally, run the radiant command here: 
