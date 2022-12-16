@@ -1,6 +1,6 @@
 # Tutorial
 
-Before proceeding, please first consult the requirements page [here](../pages/requirements.md).
+Before proceeding, please first consult the requirements page [here](./Requirements.md).
 
 <!-- MarkdownTOC -->
 
