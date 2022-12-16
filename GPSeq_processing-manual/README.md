@@ -6,4 +6,4 @@ Then, do the set up instructions: [here](./Set-Up.md)
 
 Then, do the pre-processing steps: [here](./PreProcessing.md)
 
-Finally, run the radiant command here: 
+Finally, run the radiant command here: [here](./Score-Calculation.md)
