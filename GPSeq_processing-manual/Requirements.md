@@ -10,6 +10,7 @@ The tutorial requires the following software ad packages:
     - `pandas`
     - `rich`
     - `tqdm`
+    - `bedops`
 * R packages
     - `argparser`
     - `cowplot`
@@ -32,12 +33,14 @@ pip3 list | grep numpy
 pip3 list | grep pandas
 pip3 list | grep rich
 pip3 list | grep tqdm
+conda list | grep bedops
 ```
 
 The output should be a list of the packages and their installed versions. if a package is missing from the output of the command above, install it with the command below (*NOTE. Include only packages that are not already installed.*):
 
 ```bash
 pip3 install fastx-barber joblib numpy pandas rich tqdm
+conda install -c bioconda bedops
 ```
 
 ## Install R packages
@@ -76,4 +79,3 @@ The command will output `softwareName not found` for any missing software. If th
 ```bash
 sudo apt update
 sudo apt install bowtie2 sambamba fastqc
-```
