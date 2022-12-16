@@ -79,8 +79,9 @@ The command will output `softwareName not found` for any missing software. If th
 ```bash
 sudo apt update
 sudo apt install bowtie2 sambamba fastqc
+```
 
-### Score Calculation
+## Score Calculation Requirements
 
 Download `GPSeq-RadiCal` with the following:
 
